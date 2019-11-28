@@ -1,8 +1,9 @@
 from typing import Optional
-
+import exceptions
+import jwt
 from aiohttp import web
 
-import exceptions
+from settings import RSA_PUBLIC_KEY
 
 
 def check_token(auth_type: str, token: str) -> Optional[dict]:
@@ -12,6 +13,12 @@ def check_token(auth_type: str, token: str) -> Optional[dict]:
     :param token:
     :return:
     """
+    if auth_type != 'JWT':
+        raise exceptions.AccessTokenInvalid
+    try:
+        payload = jwt.decode(token, RSA_PUBLIC_KEY, algorithms='RS256')
+    except (jwt.exceptions.InvalidSignatureError, jwt.exceptions.ExpiredSignature):
+        raise exceptions.AccessTokenInvalid
     return dict(data='sample')
 
 
@@ -36,7 +43,6 @@ async def auth_middleware(request, handler) -> web.Response:
 
     auth_type = auth[0]
     token = auth[1]
-
     user = check_token(auth_type, token)
 
     setattr(request, 'api_user', user)

@@ -1,4 +1,3 @@
-import asyncio
 from uuid import uuid4
 
 from aiohttp import web
@@ -9,19 +8,6 @@ from aiohttp_apispec import response_schema
 from schemas import MessageCreateRequestSchema, APISPEC_DEFAULT_PARAMS
 from schemas import MessageCreateResponseSchema
 from utils.auth import access_token_required
-
-
-async def one():
-    await asyncio.sleep(5)
-    return 1
-
-
-async def two():
-    return 2
-
-
-async def three():
-    return 3
 
 
 @docs(
@@ -43,8 +29,6 @@ async def send_message(request):
         text=request['data']['text'],
         messageId=message_id,
     )
-
-    dummy = await asyncio.gather(one(), two(), three())
 
     validated_games_list = MessageCreateResponseSchema().load(res)
 
