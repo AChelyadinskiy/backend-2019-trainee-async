@@ -9,13 +9,13 @@ from utils.auth import access_token_required
 from integrations.google_stt import SpeechToText
 
 
-# @docs(
-#     tags=['STT'], summary='Запрос на распознание речи', description='Описание запроса',
-#     parameters=APISPEC_DEFAULT_PARAMS,
-# )
+@docs(
+    tags=['STT'], summary='Запрос на распознание речи', description='Описание запроса',
+    parameters=APISPEC_DEFAULT_PARAMS,
+)
 @request_schema(STTCreateRequestSchema)
 @response_schema(STTCreateResponseSchema)
-# @access_token_required
+@access_token_required
 async def recognize(request):
     """
     Отправляет сообщение

@@ -1,4 +1,3 @@
-import asyncio
 from uuid import uuid4
 
 from aiohttp import web

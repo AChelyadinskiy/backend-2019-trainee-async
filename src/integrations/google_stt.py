@@ -1,6 +1,6 @@
 import json
-import requests
 from exceptions import ValidationError
+import requests
 from settings import GOOGLE_STT_API_URL, GOOGLE_STT_API_KEY
 
 
