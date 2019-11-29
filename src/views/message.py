@@ -5,7 +5,7 @@ from aiohttp_apispec import docs
 from aiohttp_apispec import request_schema
 from aiohttp_apispec import response_schema
 
-from schemas import MessageCreateRequestSchema, APISPEC_DEFAULT_PARAMS
+from schemas import MessageCreateRequestSchema
 from schemas import MessageCreateResponseSchema
 
 
