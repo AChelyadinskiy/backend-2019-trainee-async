@@ -9,7 +9,7 @@ class SpeechToText:
     AUDIO_CHANNEL_COUNT: int = 1
 
     @classmethod
-    def decode(cls, speech_content: bytes) -> str:
+    async def decode(cls, speech_content: bytes) -> str:
         """
         Преобразует аудиофайл в текст с помощью GoogleSpeechToText
         :param speech_content: аудиофайл
