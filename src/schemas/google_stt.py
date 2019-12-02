@@ -3,7 +3,7 @@ from marshmallow import fields
 
 
 class STTCreateRequestSchema(Schema):
-    speech = fields.Str(required=True, description='аудиофайл с речью', )
+    speech = fields.Str(required=True, description='Аудиофайл с речью', )
 
 
 class STTCreateResponseSchema(Schema):

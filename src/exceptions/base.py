@@ -54,6 +54,7 @@ class ServerError(BaseAppException):
         Возвращает схему исключения
         :return:
         """
+
         class ExceptionSchema(Schema):
             code = fields.Constant(cls.__name__, example=cls.__name__, description='Код ошибки в PascalCase')
             title = fields.String(

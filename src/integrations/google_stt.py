@@ -1,5 +1,5 @@
 import json
-from exceptions import ValidationError
+from exceptions import InputValidationError
 import requests
 from settings import GOOGLE_STT_API_URL, GOOGLE_STT_API_KEY
 
@@ -9,7 +9,7 @@ class SpeechToText:
     AUDIO_CHANNEL_COUNT: int = 1
 
     @classmethod
-    def decode(cls, speech_content: bytes) -> str:
+    async def decode(cls, speech_content: bytes) -> str:
         """
         Преобразует аудиофайл в текст с помощью GoogleSpeechToText
         :param speech_content: аудиофайл
@@ -29,4 +29,4 @@ class SpeechToText:
             res = result.json()['results'][0]['alternatives'][0]['transcript']
             return res
         except KeyError:
-            raise ValidationError(message="Неподдерживаемый формат аудиофайла")
+            raise InputValidationError(message="Неподдерживаемый формат аудиофайла")
